@@ -7,8 +7,8 @@ from selenium.common.exceptions import NoSuchElementException
 import time
 import math
 
-answer = math.log(int(time.time()))
-
+#answer = math.log(int(time.time()))
+#Correct!Correct!Correct!The owls are not Correct!Correct!what they seem! OvO
 
 #def test_exception1():
     #try: 
@@ -16,13 +16,14 @@ answer = math.log(int(time.time()))
 def browser():
     browser = webdriver.Chrome()
     yield browser
-    time.sleep(10)
+    time.sleep(5)
     browser.quit()
 
 @pytest.mark.parametrize('lesson', ["236895", "236896","236897","236898","236899","236903","236904","236905"])
 def test_lesson_link(browser, lesson):
     link = f"https://stepik.org/lesson/{lesson}/step/1/"
     browser.get(link)
+    answer = math.log(int(time.time()))#перенес формулу во внутрь функции так как формула нормально считала только на первом тесте, а дальше ответ устаревал
             #browser = webdriver.Chrome()
             #browser.get("https://stepik.org/lesson/{lesson}/step/1")
         
@@ -38,7 +39,8 @@ def test_lesson_link(browser, lesson):
     button1 = browser.find_element_by_css_selector ("#ember73 > div > section > div > div.attempt__inner > div.attempt__actions > button")
             # кликаем на кнопку
     button1.click()
-    tex = WebDriverWait(browser, 25).until(EC.text_to_be_present_in_element((By.XPATH, '/html/body/main/div[1]/div[2]/div/div[2]/div[1]/div/article/div/div/div[2]/div/div/div[1]/div[2]/div/pre'), 'Correct!'))
+    tex = WebDriverWait(browser, 5).until(EC.text_to_be_present_in_element((By.XPATH, '/html/body/main/div[1]/div[2]/div/div[2]/div[1]/div/article/div/div/div[2]/div/div/div[1]/div[2]/div/pre'), 'Correct!'))
+            
             #pytest.fail('Текст не соответсвует - Correct!')
 
 #@pytest.mark.xfail(reason="fixing this bug right now")
